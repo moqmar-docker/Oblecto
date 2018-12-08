@@ -7,9 +7,30 @@ Oblecto is a media server, similar to Plex, Emby, Netflix and others. It runs in
 While Oblecto is still a work in progress project, Oblecto does currently support movie and TV streaming. It tracks episodes which have been watched and allows you to stop watching on one device and pickup right where you left off on another.
 
 ## How do I set this up?
-Simple!
+We now support Docker as the recommended way to set up Oblecto.
 
-Edit config.json to suit your needs. Please pay attention to the mysql database config as Oblecto uses a MySQL database to store its data.
+All you need to get an Oblecto server running, including [Oblecto-Web](https://github.com/robinp7720/Oblecto-Web), is the following:
+
+```bash
+wget https://github.com/robinp7720/Oblecto/blob/master/docker-compose.yml
+sed -i '/^\s*build:/d' docker-compose.yml  # Use the pre-built images
+docker-compose up
+```
+
+You 
+
+### But I want to build the container images myself!
+
+```bash
+git clone https://github.com/robinp7720/Oblecto.git
+git clone https://github.com/robinp7720/Oblecto-Web.git  # (must be in the same folder)
+cd Oblecto
+docker-compose up
+```
+
+### But I don't want to use Docker!
+The normal setup process is simple as well - just clone the Git repositories, and edit config.json to suit your needs.  
+Please pay attention to the mysql database config as Oblecto uses a MySQL database to store its data.
 
 ```bash
 npm install
@@ -24,6 +45,8 @@ User accounts must currently be created manually in the database.
 All logo images courtesy of dee-y 
 
 ## I've set this thing up. Now where's the place I actually watch my *legaly obtained* media?
-Since Oblecto itself is only an interface between your media and a client to watch it on, you'll need a beautifull frontend which can talk to the Oblecto bankend.
+Since Oblecto itself is only an interface between your media and a client to watch it on, you'll need a beautifull frontend which can talk to the Oblecto backend.
 
 The interface maintained by myself is available here: https://github.com/robinp7720/Oblecto-Web
+
+The docker-compose file already includes the interface, you can reach it at http://localhost:15223 by default.

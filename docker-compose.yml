@@ -1,0 +1,22 @@
+version: '3'
+services:
+  server:
+    build: .
+    image: oblecto/server
+    volumes:
+    - ./storage:/data
+    ports:
+    - "15212:80" # "obl"
+    #- "5353:5353/udp" # mdns
+  web:
+    build: ../Oblecto-Web
+    image: oblecto/web
+    ports:
+    - "15223:80" # "obw"
+  db:
+    image: mariadb
+    volumes:
+    - ./database:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpw
+      MYSQL_DATABASE: oblecto

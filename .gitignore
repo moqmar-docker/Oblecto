@@ -6,3 +6,7 @@ node_modules
 dist/
 build/
 .vscode/launch.json
+
+# docker-compose volumes
+/storage/
+/database/
